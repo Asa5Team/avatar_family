@@ -1,5 +1,5 @@
 const postPutUserSchema = {
-    name: 'postPutUserSchame',
+    name: 'postPutUserSchema',
     schema: {
         type: "object",
         properties: {
@@ -8,14 +8,13 @@ const postPutUserSchema = {
                 format: 'email'
             },
 
-            nick: {
-                type: 'string'
-            },
-
             userInfo: {
                 type: "object",
                 properties: {
                     fullName: {
+                        type: 'string'
+                    },
+                    phoneNumber: {
                         type: 'string'
                     },
                     birthDate: {
@@ -29,7 +28,7 @@ const postPutUserSchema = {
                 required: ['fullName', 'birthDate', 'country']
             },
         },
-        required: ['email', 'nick', 'userInfo']
+        required: ['email', 'userInfo' ]
     }
 }
 

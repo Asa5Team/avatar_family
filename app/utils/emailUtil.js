@@ -6,5 +6,5 @@ const isValidEmail = (email) => {
 }
 
 module.exports = {
-    isValidEmail: isValidEmail
+    isValidEmail
 }

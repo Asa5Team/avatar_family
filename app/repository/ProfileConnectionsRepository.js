@@ -5,18 +5,18 @@ const settingsSchema = {
     timestamps: true,
 }
 
-const userModel = {
-    tableName: 'request-access-profile',
+const profileConnectionsModel = {
+    tableName: 'profile-connections',
     schema: new dynamoose.Schema({
-            idUserOwnerProfile: {
+            profileOwnerId: {
                 type: String,
                 hashKey: true
             },
-            requestingUserId: {
+            followerRequestId: {
                 type: String,
                 rangeKey: true,
                 index: {
-                    name: 'requestingUserIdx',
+                    name: 'followerRequestIdx',
                     global: true
                 }
             },
@@ -30,16 +30,10 @@ const userModel = {
     }
 }
 
-class RequestAccessProfileRepository extends DynamoAccessDB {
-
+class ProfileConnectionsRepository extends DynamoAccessDB {
     constructor() {
-        super(userModel)
+        super(profileConnectionsModel)
     }
-
-    findAccessRequest(idUserOwnerProfile, requestingUserId){
-        return this.instance.query('idUserOwnerProfile').eq(idUserOwnerProfile).where('requestingUserId').eq(requestingUserId).exec()
-    }
-
 }
 
-module.exports = new RequestAccessProfileRepository()
+module.exports = new ProfileConnectionsRepository()

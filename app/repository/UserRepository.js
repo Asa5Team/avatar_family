@@ -1,46 +1,51 @@
 const {DynamoAccessDB} = require("./BaseRepository");
+const {USER_STATUS, PROFILE_STATUS} = require('../utils/constants')
 const dynamoose = require("dynamoose");
 const uuid = require('uuid')
 
+const settingsSchema = {
+    timestamps: true,
+}
 
 const userModel = {
     tableName: 'user',
     schema: new dynamoose.Schema({
-        id: {
-            type: String,
-            hashKey: true,
-            "default": () => uuid.v4(),
-            index: {
-                name: 'idUserIdx',
-                global: true
-            }
-        }, email: {
-            type: String,
-            index: {
-                name: 'emailUserIdx',
-                global: true
-            }
-        }, userInfo: {
-            type: Object,
-            schema: {
-                fullName: String,
-                birthDate: String,
-                country: String
-            }
-        }, nick: {
-            type: "String",
-            index: {
-                name: "nickUserIdx",
-                global: true
+            id: {
+                type: String,
+                hashKey: true,
+                "default": () => uuid.v4(),
+            }, email: {
+                type: String,
+                index: {
+                    name: 'emailUserIdx',
+                    global: true
+                }
+            }, userInfo: {
+                type: Object,
+                schema: {
+                    fullName: {
+                        type: String,
+                        required: true
+                    },
+                    phoneNumber: String,
+                    birthDate: {
+                        type: String,
+                        required: true
+                    },
+                    country: {
+                        type: String,
+                        required: true
+                    }
+                }
+            },
+            userStatus: {
+                type: String,
+                enum: [USER_STATUS.ACTIVE, USER_STATUS.INACTIVE, USER_STATUS.BLOCKED, USER_STATUS.PENDING],
+                "default": USER_STATUS.PENDING
             }
         },
-        isActive: {
-            type: Boolean,
-            require: true
-        }
-    }, {
-        timestamps: true
-    }),
+        settingsSchema
+    ),
     tableConfig: {
         create: true,
         throughput: {
@@ -50,11 +55,9 @@ const userModel = {
 }
 
 class UserRepository extends DynamoAccessDB {
-
     constructor() {
         super(userModel)
     }
-
 }
 
 module.exports = new UserRepository()

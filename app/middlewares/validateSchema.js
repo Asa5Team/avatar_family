@@ -1,16 +1,16 @@
-const ajv = require('../util/AjvUtil')
+const ajv = require('../utils/AjvUtil').AjvUtil
 
 const validateSchema = (schema, schemaName) => {
     return (request, response, next) => {
-        console.log(`Validate schema: ${schemaName}`)
-        ajv.validateSchema(schema, schemaName, request.body).then(() =>{
+        try{
+            console.log(`Validate schema: ${schemaName}`)
+            ajv.validateSchema(schema, schemaName, request.body)
             next()
-        }).catch(error => {
-
+        }catch (error) {
             console.log(`Error when validate schema:  ${error}`)
-            return response.status(400).json({message: error})
-        })
 
+            throw error
+        }
     }
 }
 

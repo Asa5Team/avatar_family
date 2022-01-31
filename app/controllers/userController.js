@@ -2,20 +2,10 @@ const userService = require('../services/userService')
 
 const getUser = async (request, context, response, next) => {
     try {
-        const userResult = await userService.findUsers(request.query.searchValue)
+        const userResult = await userService.findUserByEmail(request.query.email)
         response.status(200).json(userResult)
     } catch (error) {
         console.log(`Erro when get user: ${error.message}`)
-        next(error)
-    }
-}
-
-const getUserByEmail = async (request, context, response, next) => {
-    try {
-        const userResult = await userService.findUserByEmail(request.params.email)
-        response.status(200).json(userResult)
-    } catch (error) {
-        console.log(`Erro when get user by e-mail: ${error.message}`)
         next(error)
     }
 }
@@ -52,7 +42,6 @@ const updateUser = async (request, context, response, next) => {
 
 module.exports = {
     getUser,
-    getUserByEmail,
     getUserById,
     createUser,
     updateUser

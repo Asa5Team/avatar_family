@@ -5,11 +5,11 @@ const {validateSchema} = require('../middlewares/validateSchema')
 module.exports = application => {
 
     application.get('/user', (request, response, next) => {
-        userController.getUser(request, application, response)
+        userController.getUser(request, application, response, next)
     })
 
     application.get('/user/:id', (request, response, next) => {
-        userController.getUserById(request, application, response)
+        userController.getUserById(request, application, response, next)
     })
 
     application.post('/user', validateSchema(userSchema.postPutUserSchema.schema, userSchema.postPutUserSchema.name), (request, response, next) => {

@@ -4,6 +4,7 @@ const requestAuditLog = (req, res, next) => {
     let method = req.method
     console.info(`[AUDIT] [REQUEST] -> ${method} ${fullUrl}`)
 
+
     next()
 }
 

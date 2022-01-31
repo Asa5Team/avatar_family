@@ -1,7 +1,8 @@
 class RequiredFieldError extends Error{
     constructor(field) {
         const message = `${field} is required!`
-        super(message);
+        super(message)
+        this.status = 400
     }
 }
 
