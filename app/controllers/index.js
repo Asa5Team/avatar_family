@@ -1,9 +1,9 @@
 const userController = require('./userController')
-const requestAccessProfileController = require('./requestAccessProfileController')
 const profileController = require('./profileController')
+const avatarController = require('./avatarController')
 
 module.exports = {
     userController,
-    requestAccessProfileController,
-    profileController
+    profileController,
+    avatarController
 }

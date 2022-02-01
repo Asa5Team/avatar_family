@@ -11,6 +11,16 @@ module.exports = Object.freeze({
         ID: 'id'
     },
 
+    AVATAR: {
+        REACTIONS: [
+            "HAPPY",
+            "SAD",
+            "SMILING",
+            "CRYING"
+        ]
+
+    },
+
     PROFILE_STATUS: {
         ACTIVE: 'ACTIVE',
         INACTIVE: 'INACTIVE',

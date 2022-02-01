@@ -1,9 +1,9 @@
 const userService = require('./userService')
-const requestAccessProfileService = require('./requestAccessProfileService')
 const profileService = require('./profileService')
+const avatarService = require('./avatarService')
 
 module.exports = {
     userService,
-    requestAccessProfileService,
-    profileService
+    profileService,
+    avatarService
 }

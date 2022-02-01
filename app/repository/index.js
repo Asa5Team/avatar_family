@@ -1,9 +1,9 @@
 const UserRepository = require('./UserRepository')
-const RequestAccessProfileRepository = require('./RequestAccessProfileRepository')
 const ProfileRepository = require('./ProfileRepository')
+const AvatarRepository = require('./AvatarRepository')
 
 module.exports = {
     UserRepository,
-    RequestAccessProfileRepository,
-    ProfileRepository
+    ProfileRepository,
+    AvatarRepository
 }

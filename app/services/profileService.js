@@ -7,7 +7,7 @@ const createProfile = async (profileData) => {
     const user = await userService.findUserById(profileData.id)
 
     if (validateUtil.valueFound(user)) {
-        console.log(`User ${profileData.id} existis`)
+        console.log(`Profile ${profileData.id} existis`)
         return await ProfileRepository.saveItem(profileData)
     } else {
         console.log(`User ${profileData.id} not exists`)

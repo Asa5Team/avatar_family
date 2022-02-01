@@ -1,5 +1,7 @@
 const {DynamoAccessDB} = require("./BaseRepository");
 const dynamoose = require("dynamoose");
+const {REACTIONS} = require('../utils/constants').AVATAR
+const uuid = require("uuid");
 
 const settingsSchema = {
     timestamps: true,
@@ -10,7 +12,8 @@ const avatarModel = {
     schema: new dynamoose.Schema({
             id: {
                 type: String,
-                hashKey: true
+                hashKey: true,
+                "default": () => uuid.v4(),
             },
             avatarBucket: {
                 type: String
@@ -18,11 +21,8 @@ const avatarModel = {
             reactionIds: {
                 type: Array,
                 schema: [{
-                    type: Object,
-                    schema: {
-                        id: String,
-                        description: String
-                    }
+                    type: String,
+                    enum: [REACTIONS]
                 }]
             }
         },
