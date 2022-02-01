@@ -18,11 +18,11 @@ const avatarModel = {
             avatarBucket: {
                 type: String
             },
-            reactionIds: {
+            reactionId: {
                 type: Array,
                 schema: [{
                     type: String,
-                    enum: [REACTIONS]
+                    enum: REACTIONS
                 }]
             }
         },
